@@ -1,25 +1,25 @@
+import 'package:fakeingbar/screens/video_call.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../messenger_appbar_icon.dart';
 import 'audio_call_page.dart';
 
-const ListYourFriendChat = [
+const listYourFriendChat = [
   'Nice to meet you!',
   'Hello',
 ];
-const ListYourChat = [
+const listYourChat = [
   'Nice to meet you!',
   'Hi',
 ];
 
 class Chat extends StatefulWidget {
-  String? name,image;
-  bool? isOnline;
+  final String? name,image;
+  final bool? isOnline;
+  const Chat(this.name,this.image, this.isOnline, {Key? key}) : super(key: key);
 
-
-  Chat(this.name,this.image, this.isOnline);
-
+  @override
   _ChatState createState() => _ChatState();
 }
 
@@ -68,30 +68,30 @@ class _ChatState extends State<Chat> {
                                           ),
                                           borderRadius: BorderRadius.circular(15.0)),
                                     ),
-                                  ):Padding(
-                                    padding: const EdgeInsets.fromLTRB(6.0, 0.0, 3.0, 0.0),
-                                    child: Container(width: 20.0,
+                                  ):const Padding(
+                                    padding: EdgeInsets.fromLTRB(6.0, 0.0, 3.0, 0.0),
+                                    child: SizedBox(width: 20.0,
                                       height: 20.0,),
                                   )
                                 ],
                               ),
-                              SizedBox(width: 15.0),
+                              const SizedBox(width: 15.0),
                               Container(
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.all(8.0),
+                                padding:const  EdgeInsets.all(8.0),
                                 decoration: BoxDecoration(
                                   color: Colors.grey.shade200,
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
                                 child: Text(
-                                  ListYourFriendChat[index],
-                                  style: TextStyle(fontSize: 16.0),
+                                  listYourFriendChat[index],
+                                  style: const TextStyle(fontSize: 16.0),
                                 ),
                               )
                             ],
                           ),
                         ),
-                        SizedBox(height: 10.0),
+                        const SizedBox(height: 10.0),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16.0,
@@ -103,18 +103,18 @@ class _ChatState extends State<Chat> {
                             children: <Widget>[
                               Container(
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 decoration: BoxDecoration(
                                   color: Colors.deepPurpleAccent,
                                   borderRadius: BorderRadius.circular(15.0),
                                 ),
                                 child: Text(
-                                  ListYourChat[index],
-                                  style: TextStyle(fontSize: 16.0,color: Colors.white),
+                                  listYourChat[index],
+                                  style: const TextStyle(fontSize: 16.0,color: Colors.white),
                                 ),
                               ),
-                              SizedBox(width: 15.0),
-                              AppBarNetworkRoundedImage(
+                              const SizedBox(width: 15.0),
+                              const AppBarNetworkRoundedImage(
                                 imageUrl: "images/m1.jpg",),
                             ],
                           ),
@@ -125,7 +125,7 @@ class _ChatState extends State<Chat> {
                     //return
 
                   },
-                itemCount: ListYourFriendChat.length,
+                itemCount: listYourFriendChat.length,
               ),
             ),
             _buildBottomChat(),
@@ -149,21 +149,22 @@ class _ChatState extends State<Chat> {
             Navigator.push(context, MaterialPageRoute(builder: (_) {
               return AudioCall(image:widget.image,name:widget.name,);  }));
           },
-          child: Icon(
+          child: const Icon(
             FontAwesomeIcons.phoneAlt,
             color: Colors.deepPurpleAccent,
             size: 20.0,
           ),
         ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width*.05,
-        ),
+        SizedBox(width: MediaQuery.of(context).size.width*.05),
         Row(
           children: [
-            Icon(
-              FontAwesomeIcons.video,
-              color: Colors.deepPurpleAccent,
-              size: 20.0,
+            InkWell(
+              onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (_)=>VideoCallPage(image:widget.image,name:widget.name))),
+              child: const Icon(
+                FontAwesomeIcons.video,
+                color: Colors.deepPurpleAccent,
+                size: 20.0,
+              ),
             ),
             SizedBox(width: MediaQuery.of(context).size.width*.008,),
             widget.isOnline==true?Container(
@@ -176,11 +177,11 @@ class _ChatState extends State<Chat> {
                     color: Colors.white,
                   ),
                   borderRadius: BorderRadius.circular(15.0)),
-            ):Container(width: 13.0,
+            ):const SizedBox(width: 13.0,
               height: 13.0,)
           ],
         ),
-        Icon(
+        const Icon(
           Icons.info_rounded,
           color: Colors.deepPurpleAccent,
           size: 25.0,
@@ -191,10 +192,10 @@ class _ChatState extends State<Chat> {
 
   _buildBottomChat() {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
       ),
-      padding: EdgeInsets.only(top: 15.0, bottom: 5.0,left: 10),
+      padding:const  EdgeInsets.only(top: 15.0, bottom: 5.0,left: 10),
       child: Row(
         children: <Widget>[
           Container(
@@ -217,7 +218,7 @@ class _ChatState extends State<Chat> {
           //   ),
           //   onPressed: () {},
           // ),
-          Container(
+          const SizedBox(
             width: 22.0,
             child: Icon(
               FontAwesomeIcons.camera,
@@ -226,7 +227,7 @@ class _ChatState extends State<Chat> {
             ),
           ),
           SizedBox(width: MediaQuery.of(context).size.width*.04),
-          Container(
+          const SizedBox(
             width: 22.0,
             child: Icon(
               CupertinoIcons.photo,
@@ -234,8 +235,8 @@ class _ChatState extends State<Chat> {
               color: Colors.deepPurpleAccent,
             ),
           ),
-          SizedBox(width: 15),
-          Container(
+          const SizedBox(width: 15),
+          const SizedBox(
             width: 22.0,
             child: Icon(
               CupertinoIcons.mic_solid,
@@ -244,15 +245,15 @@ class _ChatState extends State<Chat> {
             ),
           ),
           Expanded(
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width - 40,
               height: MediaQuery.of(context).size.width*.11,
               child: TextField(
                 decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(10.0),
+                    contentPadding: const EdgeInsets.all(10.0),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         width: 0,
                         style: BorderStyle.none,
                       ),
@@ -265,7 +266,7 @@ class _ChatState extends State<Chat> {
                       fontWeight: FontWeight.w500,
                       color: Colors.grey[600],
                     ),
-                    suffixIcon: Icon(
+                    suffixIcon: const Icon(
                       FontAwesomeIcons.solidSmileBeam,
                       size: 22.0,
                       color: Colors.deepPurpleAccent,
@@ -274,10 +275,10 @@ class _ChatState extends State<Chat> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 6.0),
+            padding: const EdgeInsets.symmetric(horizontal: 6.0),
             child: IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 FontAwesomeIcons.solidThumbsUp,
                 size: 22.0,
                 color: Colors.deepPurpleAccent,
@@ -293,8 +294,7 @@ class _ChatState extends State<Chat> {
 
 class AppBarNetworkRoundedImage extends StatelessWidget {
   final String? imageUrl;
-
-  AppBarNetworkRoundedImage({@required this.imageUrl});
+   const AppBarNetworkRoundedImage({Key? key, required this.imageUrl}):super(key: key);
 
   @override
   Widget build(BuildContext context) {

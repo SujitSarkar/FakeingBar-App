@@ -1,18 +1,16 @@
-import 'package:fakeingbar/screens/chat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MessengerAppBarAction extends StatefulWidget {
   List<Widget> actions = [];//List<Widget>(0);
-  String? title;
-  bool isScroll;
-  bool? isOnline;
-  bool? isBack;
-  String? subTitle;
-  String? imageUrl;
+  final String? title;
+  final bool isScroll;
+  final bool? isOnline;
+  final bool? isBack;
+  final String? subTitle;
+  final String? imageUrl;
 
-  MessengerAppBarAction({
+  MessengerAppBarAction({Key? key,
     required this.actions,
     this.title = '',
     required this.isScroll,
@@ -20,7 +18,7 @@ class MessengerAppBarAction extends StatefulWidget {
     this.isOnline,
     this.subTitle,
     this.imageUrl,
-  });
+  }) : super(key: key);
 
   @override
   _MessengerAppBarActionState createState() => _MessengerAppBarActionState();
@@ -31,11 +29,11 @@ class _MessengerAppBarActionState extends State<MessengerAppBarAction> {
   Widget build(BuildContext context) {
     return Container(
       height: 90.0,
-      padding: EdgeInsets.only(right: 12.0, top: 25.0),
+      padding: const EdgeInsets.only(right: 12.0, top: 25.0),
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
           color: widget.isScroll ? Colors.black12 : Colors.white,
-          offset: Offset(0.0, 1.0),
+          offset: const Offset(0.0, 1.0),
           blurRadius: 10.0,
         ),
       ]),
@@ -50,7 +48,7 @@ class _MessengerAppBarActionState extends State<MessengerAppBarAction> {
                   onTap: () {
                     Navigator.pop(context);//Routes.goBack(context);
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_back,
                     size: 25.0,
                     color: Colors.deepPurpleAccent,
